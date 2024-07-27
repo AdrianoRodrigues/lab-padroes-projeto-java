@@ -1,6 +1,9 @@
 package one.digitalinnovation.gof;
 
 import one.digitalinnovation.gof.facade.Facade;
+import one.digitalinnovation.gof.factory_method.Montadora;
+import one.digitalinnovation.gof.factory_method.MontadoraCarros;
+import one.digitalinnovation.gof.factory_method.MontadoraMotos;
 import one.digitalinnovation.gof.singleton.SingletonEager;
 import one.digitalinnovation.gof.singleton.SingletonLazy;
 import one.digitalinnovation.gof.singleton.SingletonLazyHolder;
@@ -9,6 +12,8 @@ import one.digitalinnovation.gof.strategy.ComportamentoAgressivo;
 import one.digitalinnovation.gof.strategy.ComportamentoDefensivo;
 import one.digitalinnovation.gof.strategy.ComportamentoNormal;
 import one.digitalinnovation.gof.strategy.Robo;
+
+import java.util.Random;
 
 public class Test {
 
@@ -52,6 +57,20 @@ public class Test {
 		
 		Facade facade = new Facade();
 		facade.migrarCliente("Venilton", "14801788");
+
+		// Factory Method
+
+		Random random = new Random();
+		int randomWithNextInt = random.nextInt();
+
+		Montadora montadora;
+
+		if (randomWithNextInt % 2 == 0) {
+			montadora = new MontadoraCarros();
+		} else {
+			montadora = new MontadoraMotos();
+		}
+		montadora.montarAutomovel();
 	}
 
 }
